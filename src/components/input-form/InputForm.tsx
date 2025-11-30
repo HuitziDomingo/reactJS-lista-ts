@@ -2,6 +2,7 @@
 
 import type { InputFormProps } from "../../interfaces/items/Item"
 import { useState } from "react"
+import { getCurrentDate } from "../../utils/dateUtils"
 
 function InputForm({ onAddItem }: InputFormProps) {
 
@@ -12,7 +13,7 @@ function InputForm({ onAddItem }: InputFormProps) {
         if (inputValue.trim()) {
             onAddItem({
                 text: inputValue.trim(),
-                createdAt: new Date()
+                createdAt: getCurrentDate()
             })
             setInputValue('')
         }

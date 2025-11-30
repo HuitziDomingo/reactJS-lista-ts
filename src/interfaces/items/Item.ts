@@ -10,4 +10,5 @@ export interface InputFormProps {
 
 export interface ItemListProps {
     items: Item[]
+    onDelete: (id: string) => void
 }

@@ -9,12 +9,19 @@ function App() {
 
   const [items, setItems] = useState<Item[]>([])
 
+  const [an, setAn] = useState<string>('')
+
   const hadleAddItem = (newItem: Omit<Item, 'id'>) => {
     let item: Item = {
       ...newItem,
       id: crypto.randomUUID()
     }
     setItems(prevItems => [item, ...prevItems])
+  }
+
+  const onDelete = (id: string) => {
+    console.log(id)
+    setItems(prevItems => prevItems.filter(item => item.id != id))
   }
 
   return (
@@ -24,12 +31,21 @@ function App() {
 
         <section>
           <h2>Agregar Nuevo Elemento</h2>
-          <InputForm onAddItem={hadleAddItem}/>
+          <InputForm onAddItem={hadleAddItem} />
         </section>
 
         <section>
-          <ItemList items={items}/>
+          <ItemList items={items} onDelete={onDelete} />
         </section>
+
+
+
+      <form action="">
+        <input type="text" placeholder='Escribe' value={an} onChange={(evt) => setAn(evt.target.value)}/>
+
+      </form>
+
+      {an}
       </main>
     </>
   )
